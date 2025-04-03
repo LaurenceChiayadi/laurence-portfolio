@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme, ThemeEnum } from "../../../contexts/ThemeContext";
 
 type ThemeButtonProps = {
   className?: string;
@@ -9,19 +8,12 @@ type ThemeButtonProps = {
 };
 
 const ThemeButton = (props: ThemeButtonProps) => {
-  const { theme } = useTheme();
   return (
     <button
       onClick={props.onClick}
       className={` px-4 py-1.5 rounded-t-lg text-xl ${
         !props.selected && "cursor-pointer"
-      } ${
-        props.selected && theme === ThemeEnum.Light
-          ? "bg-white"
-          : props.selected && theme === ThemeEnum.Dark
-          ? "bg-black"
-          : "bg-transparent"
-      } `}
+      } ${props.selected ? "bg-white dark:bg-[#00091d]" : "bg-transparent"} `}
       disabled={props.selected}
     >
       <span

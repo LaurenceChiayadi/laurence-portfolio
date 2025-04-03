@@ -1,5 +1,3 @@
-import { useTheme, ThemeEnum } from "../../../contexts/ThemeContext";
-
 type NavigationButtonProps = {
   selected: boolean;
   children: React.ReactNode;
@@ -7,16 +5,11 @@ type NavigationButtonProps = {
 };
 
 const NavigationButton = (props: NavigationButtonProps) => {
-  const { theme } = useTheme();
   return (
     <a
       onClick={props.onClick}
       className={`cursor-pointer px-3 py-1 rounded-t-lg ${
-        props.selected && theme === ThemeEnum.Light
-          ? "bg-white"
-          : props.selected && theme === ThemeEnum.Dark
-          ? "bg-black"
-          : "bg-transparent"
+        props.selected ? "bg-white dark:bg-[#00091d]" : "bg-transparent"
       }`}
     >
       <li
