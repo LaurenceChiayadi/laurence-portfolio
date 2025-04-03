@@ -5,6 +5,16 @@
   scroll-behavior: smooth;
 }
 
+:root {
+  --color-primary: theme('colors.pink.500');
+  /* Light mode -> pink */
+}
+
+.dark {
+  --color-primary: theme('colors.blue.500');
+  /* Dark mode -> blue */
+}
+
 ::-webkit-scrollbar {
   width: 20px;
 }
