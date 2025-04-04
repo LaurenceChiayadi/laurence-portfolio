@@ -6,21 +6,11 @@
   scroll-behavior: smooth;
 }
 
-:root {
+@theme {
   --color-primary: theme('colors.pink.500');
-  /* Light mode -> pink */
+  --color-primary-dark: theme('colors.blue.500');
 }
 
-.dark {
-  --color-primary: theme('colors.blue.500');
-  /* Dark mode -> blue */
-}
-
-@layer components {
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent;
-  }
-}
 ::-webkit-scrollbar {
   width: 20px;
 }

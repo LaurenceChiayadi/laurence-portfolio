@@ -29,7 +29,7 @@ const Hero = () => {
         >
           <div className="flex flex-row font-light md:text-6xl text-5xl">
             <img className="w-[0.8em] h-[0.8em]" src={HandWavingGif} />
-            <h1 className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent ">
+            <h1 className="text-primary dark:text-primary-dark">
               Laurence Chiayadi
             </h1>
           </div>
