@@ -1,3 +1,3 @@
 {
-    "navBar": [{"label": "Home", "position": 100}, {"label": "About", "position": 150}, {"label": "Skills", "position": 200}, {"label": "Projects", "position": 250}, {"label": "Contact", "position": 300}]
+    "navBar": [{"label": "Home", "position": 0}, {"label": "About", "position": 80}, {"label": "Skills", "position": 160}, {"label": "Projects", "position": 240}, {"label": "Contact", "position": 320}]
 }

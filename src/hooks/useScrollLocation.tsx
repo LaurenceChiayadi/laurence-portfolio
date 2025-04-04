@@ -10,7 +10,8 @@ const useScrollLocation = () => {
     setPercentageScrolled(percentage);
   });
 
-  const scrollToPercentage = useCallback((percentage: number) => {
+  const scrollToPercentage = useCallback((percentageProps: number) => {
+    const percentage = percentageProps > 0 ? percentageProps + 10 : 0;
     const targetY = (percentage / 100) * window.innerHeight;
     window.scrollTo({ top: targetY, behavior: "smooth" });
   }, []);

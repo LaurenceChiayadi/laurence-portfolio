@@ -1,29 +1,23 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { BiMenu, BiX } from "react-icons/bi";
-import { useTranslation } from "react-i18next";
 
 import {
   getBackgroundClass,
   getBodyTextClass,
 } from "../../utilities/ThemeUtilities";
 import { useTheme } from "../../contexts/ThemeContext";
+import useScrollLocation from "../../hooks/useScrollLocation";
 
 type DrawerProps = {
   isOpenDrawer: boolean;
   menuOpen: VoidFunction;
+  menuOptions: INavBarContent[];
 };
 
 const Drawer = (props: DrawerProps) => {
   const { theme } = useTheme();
-  // const { percentageScrolled } = useScrollLocation();
-  const { t } = useTranslation();
-  const menuOptions = t<"navBar", { returnObjects: true }, INavBarContent[]>(
-    "navBar",
-    {
-      returnObjects: true,
-    }
-  ) as INavBarContent[];
+  const { scrollToPercentage } = useScrollLocation();
 
   return (
     <>
@@ -66,11 +60,11 @@ const Drawer = (props: DrawerProps) => {
       >
         <div className="flex flex-col items-start justify-start p-12 gap-10">
           <ul className="flex flex-col gap-8">
-            {menuOptions.map((item: INavBarContent) => (
+            {props.menuOptions.map((item: INavBarContent) => (
               <a
                 key={item.label}
-                href="#home"
-                className={`cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100 ${getBodyTextClass(
+                onClick={() => scrollToPercentage(item.position)}
+                className={`cursor-pointer font-semibold opacity-70 transition-all duration-300 hover:opacity-100 bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent ${getBodyTextClass(
                   theme
                 )}`}
               >
@@ -80,7 +74,7 @@ const Drawer = (props: DrawerProps) => {
           </ul>
           <ul className="flex flex-wrap gap-5">
             <li
-              className={`cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-red-500 hover:opacity-100 ${getBodyTextClass(
+              className={`cursor-pointer text-xl opacity-70 transition-all duration-300 gradient-text hover:text-red-500 hover:opacity-100 ${getBodyTextClass(
                 theme
               )}`}
             >

@@ -11,7 +11,7 @@ import useScrollLocation from "../hooks/useScrollLocation";
 const NavBar = () => {
   const { theme, toggleTheme } = useTheme();
   const { t } = useTranslation();
-  const { percentageScrolled } = useScrollLocation();
+  const { percentageScrolled, scrollToPercentage } = useScrollLocation();
 
   const menuOptions = t<"navBar", { returnObjects: true }, INavBarContent[]>(
     "navBar",
@@ -28,12 +28,16 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    if (percentageScrolled < menuOptions[0].position) {
-      setSelected(menuOptions[0].label);
-    } else if (percentageScrolled < menuOptions[1].position) {
-      setSelected(menuOptions[1].label);
-    } else if (percentageScrolled < menuOptions[2].position) {
+    if (percentageScrolled > menuOptions[4].position) {
+      setSelected(menuOptions[4].label);
+    } else if (percentageScrolled > menuOptions[3].position) {
+      setSelected(menuOptions[3].label);
+    } else if (percentageScrolled > menuOptions[2].position) {
       setSelected(menuOptions[2].label);
+    } else if (percentageScrolled > menuOptions[1].position) {
+      setSelected(menuOptions[1].label);
+    } else if (percentageScrolled > menuOptions[0].position) {
+      setSelected(menuOptions[0].label);
     }
   }, [percentageScrolled, menuOptions]);
 
@@ -43,7 +47,7 @@ const NavBar = () => {
         {menuOptions.map((item: INavBarContent) => (
           <NavigationButton
             key={item.label}
-            onClick={() => {}}
+            onClick={() => scrollToPercentage(item.position)}
             selected={selected === item.label}
           >
             {item.label}
@@ -51,7 +55,11 @@ const NavBar = () => {
         ))}
       </ul>
 
-      <Drawer isOpenDrawer={isOpenDrawer} menuOpen={menuOpen} />
+      <Drawer
+        isOpenDrawer={isOpenDrawer}
+        menuOpen={menuOpen}
+        menuOptions={menuOptions}
+      />
 
       <ul className="gap-6 md:flex ">
         <ThemeButton
