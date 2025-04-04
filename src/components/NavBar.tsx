@@ -1,38 +1,38 @@
-import { useState } from "react";
-import { BiMenu, BiX } from "react-icons/bi";
+import { useEffect, useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useTranslation } from "react-i18next";
-import { useMotionValueEvent, useScroll } from "framer-motion";
 
-import NavigationButton from "./global/Navigation/NavigationButton";
 import { useTheme, ThemeEnum } from "../contexts/ThemeContext";
+import NavigationButton from "./global/Navigation/NavigationButton";
 import ThemeButton from "./global/Navigation/ThemeButton";
 import Drawer from "./global/Drawer";
+import useScrollLocation from "../hooks/useScrollLocation";
 
 const NavBar = () => {
   const { theme, toggleTheme } = useTheme();
   const { t } = useTranslation();
-  const { scrollY } = useScroll();
-  const [selected, setSelected] = useState("string");
+  const { percentageScrolled } = useScrollLocation();
+
+  const menuOptions = t<"navBar", { returnObjects: true }, string[]>("navBar", {
+    returnObjects: true,
+  }) as string[];
+
+  const [selected, setSelected] = useState(menuOptions[0]);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
   const menuOpen = () => {
     setIsOpenDrawer(!isOpenDrawer);
   };
 
-  const menuOptions = t<"navBar", { returnObjects: true }, string[]>("navBar", {
-    returnObjects: true,
-  }) as string[];
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const percentageScrolled = (latest / window.innerHeight) * 100;
-
-    if (percentageScrolled < 40) {
+  useEffect(() => {
+    if (percentageScrolled < 50) {
       setSelected(menuOptions[0]);
-    } else {
+    } else if (percentageScrolled < 100) {
       setSelected(menuOptions[1]);
+    } else if (percentageScrolled < 180) {
+      setSelected(menuOptions[2]);
     }
-  });
+  }, [percentageScrolled, menuOptions]);
 
   return (
     <nav className="fixed top-0 z-20 flex w-full items-end justify-between px-16 pt-8 text-white md:justify-evenly bg-gradient-to-r from-blue-500 to-pink-500">
@@ -47,12 +47,8 @@ const NavBar = () => {
           </NavigationButton>
         ))}
       </ul>
-      {isOpenDrawer ? (
-        <BiX className="block md:hidden text-4xl" onClick={menuOpen} />
-      ) : (
-        <BiMenu className="block md:hidden text-4xl " onClick={menuOpen} />
-      )}
-      <Drawer isOpenDrawer={isOpenDrawer} />
+
+      <Drawer isOpenDrawer={isOpenDrawer} menuOpen={menuOpen} />
 
       <ul className="gap-6 md:flex ">
         <ThemeButton
