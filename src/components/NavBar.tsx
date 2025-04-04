@@ -34,7 +34,14 @@ const NavBar = () => {
           Contact
         </NavigationButton>
       </ul>
-      <ul className="gap-6 md:flex">
+      {isOpenDrawer ? (
+        <BiX className="block md:hidden text-4xl" onClick={menuOpen} />
+      ) : (
+        <BiMenu className="block md:hidden text-4xl " onClick={menuOpen} />
+      )}
+      <Drawer isOpenDrawer={isOpenDrawer} />
+
+      <ul className="gap-6 md:flex ">
         <ThemeButton
           onClick={toggleTheme}
           className="text-yellow-400"
@@ -50,12 +57,6 @@ const NavBar = () => {
           <MdDarkMode />
         </ThemeButton>
       </ul>
-      {isOpenDrawer ? (
-        <BiX className="block md:hidden text-4xl" onClick={menuOpen} />
-      ) : (
-        <BiMenu className="block md:hidden text-4xl" onClick={menuOpen} />
-      )}
-      {isOpenDrawer && <Drawer isOpenDrawer={isOpenDrawer} />}
     </nav>
   );
 };
