@@ -5,7 +5,14 @@ import image4 from "../assets/4.png";
 import image5 from "../assets/5.png";
 import { motion } from "framer-motion";
 
-const projectsData = [
+type IProject = {
+  image: string;
+  title: string;
+  description: string;
+  technologies: string[];
+};
+
+const projectsData: IProject[] = [
   {
     image: image1,
     title: "Habit Tracker",
@@ -43,7 +50,7 @@ const projectsData = [
   },
 ];
 
-const ScrollReveal = (children) => {
+const ScrollReveal = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -51,28 +58,28 @@ const ScrollReveal = (children) => {
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      {children.children}
+      {children}
     </motion.div>
   );
 };
 
-const ProjectCard = (project) => {
+const ProjectCard = (props: { project: IProject }) => {
   return (
     <ScrollReveal>
       <div className="flex flex-col items-center gap-8 md:flex-row md:gap-24">
         <img
           className="w-full cursor-pointer rounded-2xl transition-all duration-300 hover:scale-105 md:w-[300px]"
-          src={project.project.image}
+          src={props.project.image}
           alt=""
         />
         <div className="flex flex-col gap:5">
           <div className="flex flex-col gap-3">
-            <div className="text-xl font-semibold">{project.project.title}</div>
-            <div className="text-gray-400">{project.project.description}</div>
+            <div className="text-xl font-semibold">{props.project.title}</div>
+            <div className="text-gray-400">{props.project.description}</div>
           </div>
 
           <div className="flex flex-wrap gap-5">
-            {project.project.technologies.map((tech, index) => (
+            {props.project.technologies.map((tech: string, index: number) => (
               <span key={index} className="rounded-lg bg-black p-3">
                 {tech}
               </span>
