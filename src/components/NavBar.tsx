@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 
 import NavigationButton from "./global/Navigation/NavigationButton";
 import { useTheme, ThemeEnum } from "../contexts/ThemeContext";
 import ThemeButton from "./global/Navigation/ThemeButton";
+import Drawer from "./global/Drawer";
 
 const NavBar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -55,51 +55,7 @@ const NavBar = () => {
       ) : (
         <BiMenu className="block md:hidden text-4xl" onClick={menuOpen} />
       )}
-      {isOpenDrawer && (
-        <div
-          className={`fixed right-0 top-[84px] flex h-screen w-1/2 flex-col items-start justify-start gap-10 border-gray-800 p-12 bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] ${
-            isOpenDrawer ? "block" : "hidden"
-          }`}
-        >
-          <ul className="flex flex-col gap-8">
-            <a
-              href="#home"
-              className="cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100"
-            >
-              <li>Home</li>
-            </a>
-            <a
-              href="#home"
-              className="cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100"
-            >
-              <li>Tech</li>
-            </a>
-            <a
-              href="#home"
-              className="cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100"
-            >
-              <li>Projects</li>
-            </a>
-            <a
-              href="#home"
-              className="cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100"
-            >
-              <li>Contact</li>
-            </a>
-          </ul>
-          <ul className="flex flex-wrap gap-5">
-            <li className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-red-500 hover:opacity-100">
-              <BsInstagram />
-            </li>
-            <li className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-red-500 hover:opacity-100">
-              <BsLinkedin />
-            </li>
-            <li className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-red-500 hover:opacity-100">
-              <BsGithub />
-            </li>
-          </ul>
-        </div>
-      )}
+      {isOpenDrawer && <Drawer isOpenDrawer={isOpenDrawer} />}
     </nav>
   );
 };
