@@ -15,7 +15,7 @@ function App() {
           theme
         )}`}
       ></div>
-      <main className="flex flex-col items-center px-4 md:px-8 lg:px-16">
+      <main className="flex flex-col items-center md:px-8 lg:px-16">
         <NavBar />
         <Hero />
         <Tech />

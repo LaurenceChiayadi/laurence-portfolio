@@ -1,51 +1,77 @@
-import SelfImage from "../assets/image.jpg";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
 import HandWavingGif from "../assets/icons/hand-waving-hand.gif";
+import Wrapper from "./global/Wrapper";
+import { getLogo } from "../utilities/GetUtilities";
 
 const Hero = () => {
+  const { t } = useTranslation();
+
+  const menuOptions = t<"hero.buttons", { returnObjects: true }, string[]>(
+    "hero.buttons",
+    {
+      returnObjects: true,
+    }
+  ) as string[];
+
   return (
-    <div
-      id="home"
-      className="px-16 flex min-h-screen w-full items-center justify-center py-28 md:px-32 z-10"
-    >
-      <div className="flex flex-col items-center justify-center gap-10 text-white">
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <img
-            src={SelfImage}
-            alt="self-image"
-            className="w-[300px] cursor-pointer rounded-full shadow-xl shadow-indigo-900 transition-all duration-300 hover:-translate-y-5 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-600 md:w-[350px]"
-          />
-        </motion.div>
-        <motion.div
-          className="flex max-w-[800px] flex-col items-center justify-center gap-3 text-center"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="flex flex-row font-light md:text-6xl text-5xl">
-            <img className="w-[0.8em] h-[0.8em]" src={HandWavingGif} />
-            <h1 className="text-primary dark:text-primary-dark">
-              Laurence Chiayadi
+    <Wrapper className="min-h-screen w-full">
+      <div className="flex flex-col md:flex-row items-center justify-evenly gap-14">
+        <div className="flex flex-col md:w-1/2 items-center justify-center gap-4 md:mb-6">
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-col items-center gap-4"
+          >
+            <img className="w-[3.5em] h-[3.5em]" src={HandWavingGif} />
+            <h3 className="text-black dark:text-white opacity-80 font-semibold text-3xl md:text-3.5xl">
+              {t("hero.subtitle")}
+            </h3>
+          </motion.div>
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h1 className="text-primary dark:text-primary-dark font-semibold text-center text-4xl md:text-5xl">
+              {t("hero.title")}
             </h1>
-          </div>
-          <h3 className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent text-2xl font-light md:text-3xl">
-            Full Stack Developer
-          </h3>
-          <p className="md:text-base text-pretty text-sm text-gray-400">
-            I&apos;m a web developer skilled in React, Next.js, and Tailwind,
-            focused on building clean, scalable applications. From front-end
-            design to seamless database integration with PostgreSQL, I create
-            efficient solutions for dynamic user experiences. Let&apos;s build
-            something great together!
-          </p>
-        </motion.div>
+          </motion.div>
+        </div>
+        <div className="flex flex-col md:w-1/2 items-center justify-center gap-4 md:mt-8">
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h3 className="text-black dark:text-white opacity-80 font-semibold text-3xl md:text-3.5xl text-center">
+              {t("hero.description")}
+            </h3>
+          </motion.div>
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="flex flex-row items-center justify-center gap-4">
+              {menuOptions.map((item: string) => (
+                <button
+                  key={item}
+                  className="bg-gradient-to-r from-blue-500 to-pink-500 rounded-lg px-3 py-1.5 hover:scale-120 duration-300"
+                >
+                  <span className="flex flex-row items-center gap-2 text-lg font-semibold text-gray-800">
+                    {getLogo(item)}
+                    {item}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 
