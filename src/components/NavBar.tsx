@@ -13,11 +13,14 @@ const NavBar = () => {
   const { t } = useTranslation();
   const { percentageScrolled } = useScrollLocation();
 
-  const menuOptions = t<"navBar", { returnObjects: true }, string[]>("navBar", {
-    returnObjects: true,
-  }) as string[];
+  const menuOptions = t<"navBar", { returnObjects: true }, INavBarContent[]>(
+    "navBar",
+    {
+      returnObjects: true,
+    }
+  ) as INavBarContent[];
 
-  const [selected, setSelected] = useState(menuOptions[0]);
+  const [selected, setSelected] = useState(menuOptions[0].label);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
   const menuOpen = () => {
@@ -25,25 +28,25 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    if (percentageScrolled < 50) {
-      setSelected(menuOptions[0]);
-    } else if (percentageScrolled < 100) {
-      setSelected(menuOptions[1]);
-    } else if (percentageScrolled < 180) {
-      setSelected(menuOptions[2]);
+    if (percentageScrolled < menuOptions[0].position) {
+      setSelected(menuOptions[0].label);
+    } else if (percentageScrolled < menuOptions[1].position) {
+      setSelected(menuOptions[1].label);
+    } else if (percentageScrolled < menuOptions[2].position) {
+      setSelected(menuOptions[2].label);
     }
   }, [percentageScrolled, menuOptions]);
 
   return (
     <nav className="fixed top-0 z-20 flex w-full items-end justify-between px-16 pt-8 text-white md:justify-evenly bg-gradient-to-r from-blue-500 to-pink-500">
       <ul className="hidden md:flex gap-6">
-        {menuOptions.map((item: string) => (
+        {menuOptions.map((item: INavBarContent) => (
           <NavigationButton
-            key={item}
+            key={item.label}
             onClick={() => {}}
-            selected={selected === item}
+            selected={selected === item.label}
           >
-            {item}
+            {item.label}
           </NavigationButton>
         ))}
       </ul>

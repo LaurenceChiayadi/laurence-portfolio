@@ -16,10 +16,14 @@ type DrawerProps = {
 
 const Drawer = (props: DrawerProps) => {
   const { theme } = useTheme();
+  // const { percentageScrolled } = useScrollLocation();
   const { t } = useTranslation();
-  const menuOptions = t<"navBar", { returnObjects: true }, string[]>("navBar", {
-    returnObjects: true,
-  }) as string[];
+  const menuOptions = t<"navBar", { returnObjects: true }, INavBarContent[]>(
+    "navBar",
+    {
+      returnObjects: true,
+    }
+  ) as INavBarContent[];
 
   return (
     <>
@@ -62,15 +66,15 @@ const Drawer = (props: DrawerProps) => {
       >
         <div className="flex flex-col items-start justify-start p-12 gap-10">
           <ul className="flex flex-col gap-8">
-            {menuOptions.map((item: string) => (
+            {menuOptions.map((item: INavBarContent) => (
               <a
-                key={item}
+                key={item.label}
                 href="#home"
                 className={`cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100 ${getBodyTextClass(
                   theme
                 )}`}
               >
-                <li>{item}</li>
+                <li>{item.label}</li>
               </a>
             ))}
           </ul>
