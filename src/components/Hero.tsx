@@ -27,7 +27,7 @@ const Hero = () => {
             className="flex flex-col items-center gap-4"
           >
             <img className="w-[3.5em] h-[3.5em]" src={HandWavingGif} />
-            <h3 className="text-black dark:text-white opacity-80 font-semibold text-3xl md:text-3.5xl">
+            <h3 className="text-black dark:text-white opacity-80 font-semibold text-3xl md:text-4.5xl">
               {t("hero.subtitle")}
             </h3>
           </motion.div>
@@ -36,7 +36,7 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-primary dark:text-primary-dark font-semibold text-center text-4xl md:text-5xl">
+            <h1 className="text-primary dark:text-primary-dark font-semibold text-center text-4xl md:text-6xl">
               {t("hero.title")}
             </h1>
           </motion.div>
@@ -47,7 +47,7 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h3 className="text-black dark:text-white opacity-80 font-semibold text-3xl md:text-3.5xl text-center">
+            <h3 className="text-black dark:text-white opacity-80 font-semibold text-3xl md:text-4.5xl text-center">
               {t("hero.description")}
             </h3>
           </motion.div>
