@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import HandWavingGif from "../assets/icons/hand-waving-hand.gif";
 import Wrapper from "./global/Wrapper";
 import { getLogo } from "../utilities/GetUtilities";
+import GradientButton from "./global/GradientButton";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -57,15 +58,10 @@ const Hero = () => {
           >
             <div className="flex flex-row items-center justify-center gap-4">
               {menuOptions.map((item: string) => (
-                <button
-                  key={item}
-                  className="bg-gradient-to-r from-blue-500 to-pink-500 rounded-lg px-3 py-1.5 hover:scale-120 duration-300"
-                >
-                  <span className="flex flex-row items-center gap-2 text-lg font-semibold text-gray-800">
-                    {getLogo(item)}
-                    {item}
-                  </span>
-                </button>
+                <GradientButton key={item}>
+                  {getLogo(item)}
+                  {item}
+                </GradientButton>
               ))}
             </div>
           </motion.div>
