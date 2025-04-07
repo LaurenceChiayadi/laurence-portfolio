@@ -1,8 +1,9 @@
-import Contacts from "./components/Contacts";
-import Hero from "./components/Hero";
 import NavBar from "./components/NavBar";
-import Projects from "./components/Projects";
+import Hero from "./components/Hero";
+import About from "./components/About";
 import Tech from "./components/Tech";
+import Projects from "./components/Projects";
+import Contacts from "./components/Contacts";
 import { useTheme } from "./contexts/ThemeContext";
 import { getBackgroundClass } from "./utilities/ThemeUtilities";
 
@@ -18,6 +19,7 @@ function App() {
       <main className="flex flex-col items-center md:px-8 lg:px-16">
         <NavBar />
         <Hero />
+        <About />
         <Tech />
         <Projects />
         <Contacts />
