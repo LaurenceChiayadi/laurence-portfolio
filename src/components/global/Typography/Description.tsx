@@ -8,7 +8,7 @@ type DescriptionProps = {
 const Description = (props: DescriptionProps) => {
   return (
     <p
-      className={`text-black dark:text-white opacity-80 ${props.className} md:text-lg`}
+      className={`text-black dark:text-white opacity-80 ${props.className} md:text-xl`}
     >
       <Trans
         i18nKey={props.i18nKey}
