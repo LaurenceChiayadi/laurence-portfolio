@@ -10,7 +10,7 @@ const About = () => {
   const { t } = useTranslation();
 
   return (
-    <Wrapper className="w-full">
+    <Wrapper className="w-full pt-0">
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
         <AnimateOnSeen className="relative h-95">
           <Blob />
