@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 
 import HandWavingGif from "../assets/icons/hand-waving-hand.gif";
 import Wrapper from "./global/Wrapper";
-import { getLogo } from "../utilities/GetUtilities";
+import { getLogo, getRedirectURL } from "../utilities/GetUtilities";
 import GradientButton from "./global/GradientButton";
 import { H1, H3 } from "./global/Typography/Typographies";
+import { openInNewTab } from "../utilities/Functions";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -53,7 +54,10 @@ const Hero = () => {
           >
             <div className="flex flex-row items-center justify-center gap-4">
               {menuOptions.map((item: string) => (
-                <GradientButton key={item}>
+                <GradientButton
+                  key={item}
+                  onClick={() => item && openInNewTab(getRedirectURL(item))}
+                >
                   {getLogo(item)}
                   {item}
                 </GradientButton>

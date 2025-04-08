@@ -7,7 +7,7 @@ import BatamNaritaImage from "../assets/BatamNarita.png";
 import { IoDocumentText } from "react-icons/io5";
 
 const logoMap: Record<string, React.ReactNode> = {
-  ["GitHub"]: <FaGithub />,
+  ["Github"]: <FaGithub />,
   ["LinkedIn"]: <FaLinkedin />,
   ["Email"]: <MdEmail />,
   ["Resume"]: <IoDocumentText />,
@@ -27,5 +27,20 @@ export const getProjectImage = (title: string) => {
       return BatamNaritaImage;
     case "Capsule Transit HMS":
       return CapsuleTransitHMSImage;
+  }
+};
+
+export const getRedirectURL = (title: string) => {
+  switch (title) {
+    case "LinkedIn":
+      return "https://www.linkedin.com/in/laurence-chia/";
+    case "Github":
+      return "https://github.com/LaurenceChiayadi";
+    case "Email":
+      return "mailto:laurence.tjahyadi@gmail.com";
+    case "Resume":
+      return "https://drive.google.com/file/d/1jzmXSOJPj_LdjDZ5QP_wqv5d6Wo5cxpt/view?usp=sharing";
+    default:
+      return "";
   }
 };

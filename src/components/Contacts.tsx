@@ -3,8 +3,9 @@ import { useTranslation } from "react-i18next";
 import Wrapper from "./global/Wrapper";
 import { H2, Paragraph } from "./global/Typography/Typographies";
 import GradientButton from "./global/GradientButton";
-import { getLogo } from "../utilities/GetUtilities";
+import { getLogo, getRedirectURL } from "../utilities/GetUtilities";
 import AnimateOnSeen from "./global/Animation/AnimateOnSeen";
+import { openInNewTab } from "../utilities/Functions";
 
 const Contacts = () => {
   const { t } = useTranslation();
@@ -19,9 +20,21 @@ const Contacts = () => {
         </AnimateOnSeen>
         <AnimateOnSeen>
           <div className="flex flex-row justify-center gap-4">
-            <GradientButton>{getLogo("Email")} Email</GradientButton>
-            <GradientButton>{getLogo("LinkedIn")} LinkedIn</GradientButton>
-            <GradientButton>{getLogo("Resume")} Resume</GradientButton>
+            <GradientButton
+              onClick={() => openInNewTab(getRedirectURL("Email"))}
+            >
+              {getLogo("Email")} Email
+            </GradientButton>
+            <GradientButton
+              onClick={() => openInNewTab(getRedirectURL("LinkedIn"))}
+            >
+              {getLogo("LinkedIn")} LinkedIn
+            </GradientButton>
+            <GradientButton
+              onClick={() => openInNewTab(getRedirectURL("Resume"))}
+            >
+              {getLogo("Resume")} Resume
+            </GradientButton>
           </div>
         </AnimateOnSeen>
       </div>
