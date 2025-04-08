@@ -1,9 +1,11 @@
-import NavBar from "./components/NavBar";
+import NavBar from "./components/global/NavBar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contacts from "./components/Contacts";
+import Footer from "./components/global/Footer";
+
 import { useTheme } from "./contexts/ThemeContext";
 import { getBackgroundClass } from "./utilities/ThemeUtilities";
 
@@ -23,6 +25,7 @@ function App() {
         <Skills />
         <Projects />
         <Contacts />
+        <Footer />
       </main>
     </>
   );

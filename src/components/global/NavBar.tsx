@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 
-import { useTheme, ThemeEnum } from "../contexts/ThemeContext";
-import NavigationButton from "./global/Navigation/NavigationButton";
-import ThemeButton from "./global/Navigation/ThemeButton";
-import Drawer from "./global/Drawer";
-import useScrollLocation from "../hooks/useScrollLocation";
+import { useTheme, ThemeEnum } from "../../contexts/ThemeContext";
+import NavigationButton from "../global/Navigation/NavigationButton";
+import ThemeButton from "../global/Navigation/ThemeButton";
+import Drawer from "../global/Drawer";
+import useScrollLocation from "../../hooks/useScrollLocation";
 
 const NavBar = () => {
   const { theme, toggleTheme } = useTheme();

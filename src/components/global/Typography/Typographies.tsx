@@ -114,7 +114,7 @@ type ParagraphProps = {
 
 export const Paragraph = (props: ParagraphProps) => {
   return (
-    <h6 className={`text-black dark:text-white opacity-80 ${props.className}`}>
+    <p className={`text-black dark:text-white opacity-80 ${props.className}`}>
       {props.i18nKey && (
         <Trans
           i18nKey={props.i18nKey}
@@ -124,6 +124,30 @@ export const Paragraph = (props: ParagraphProps) => {
         />
       )}
       {props.children && props.children}
-    </h6>
+    </p>
+  );
+};
+
+type SubtitleProps = {
+  i18nKey?: string;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+export const Subtitle = (props: SubtitleProps) => {
+  return (
+    <p
+      className={`font-xs text-black dark:text-white opacity-80 ${props.className}`}
+    >
+      {props.i18nKey && (
+        <Trans
+          i18nKey={props.i18nKey}
+          components={[
+            <span className="text-primary dark:text-primary-dark" />,
+          ]}
+        />
+      )}
+      {props.children && props.children}
+    </p>
   );
 };

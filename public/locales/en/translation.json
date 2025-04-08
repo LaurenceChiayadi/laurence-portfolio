@@ -38,5 +38,13 @@
                 "stacks": ["ReactJS", "TypeScript", "Django", "Python"]
             }
         ]
+    },
+    "contact": {
+        "title": "Let’s Build Something Great Together!",
+        "subtitle": "I'm open to collaboration and new opportunities. Feel free to reach out!"
+    },
+    "footer": {
+        "top": "Designed and Developer by Laurence Chiayadi.",
+        "bottom": "Built with <0>Vite</0>, <0>React.js</0> and <0>Tailwind CSS</0>. Hosted on <0>Vercel</0>"
     }
 }
