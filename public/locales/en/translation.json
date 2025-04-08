@@ -11,5 +11,11 @@
         "intro": "Hey! I’m Laurence Chiayadi, a passionate <0>Full Stack Developer</0> who enjoys bringing ideas to life through code.",
         "story": "It all started when I first dabbled in programming, probably breaking more things than I built. Fast forward to today, I specialize in <0>JavaScript</0>, <0>TypeScript</0>, <0>React</0>, <0>Next.JS</0>, and <0>Django</0>, and I’m always eager to learn new technologies.",
         "hobbies": "When I’m not coding, you’ll find me capturing moments with my <0>Fujifilm XT-1</0> 📸, geeking out over new gadgets, or attempting to perfect my <0>Golf</0> swing! ⛳"
+    },
+    "skills": {
+        "title": "🛠️ Skills",
+        "workExperience": "🚀  2+ years of experience in software development.",
+        "proficiency": "⚡ Proficient in ReactJS, NextJS & Django for dynamic applications."
+        
     }
 }

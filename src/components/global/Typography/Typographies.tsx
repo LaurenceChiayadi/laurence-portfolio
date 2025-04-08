@@ -36,27 +36,72 @@ type H3Props = {
 export const H3 = (props: H3Props) => {
   return (
     <h3
-      className={`text-black dark:text-white opacity-80 font-semibold text-3xl md:text-4.5xl ${props.className}`}
+      className={`text-3xl md:text-4.5xl font-semibold dark:text-white opacity-80 ${props.className}`}
     >
       {props.children}
     </h3>
   );
 };
 
-type DescriptionProps = {
-  i18nKey: string;
+type H4Props = {
+  children?: React.ReactNode;
   className?: string;
 };
 
-export const Description = (props: DescriptionProps) => {
+export const H4 = (props: H4Props) => {
   return (
-    <p
+    <h4
+      className={`text-2xl font-semibold dark:text-white opacity-80 ${props.className}`}
+    >
+      {props.children}
+    </h4>
+  );
+};
+
+type H5Props = {
+  i18nKey?: string;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+export const H5 = (props: H5Props) => {
+  return (
+    <h5
+      className={`text-lg md:text-xl font-semibold dark:text-white opacity-80 ${props.className}`}
+    >
+      {props.i18nKey && (
+        <Trans
+          i18nKey={props.i18nKey}
+          components={[
+            <span className="text-primary dark:text-primary-dark" />,
+          ]}
+        />
+      )}
+      {props.children && props.children}
+    </h5>
+  );
+};
+
+type H6Props = {
+  i18nKey?: string;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+export const H6 = (props: H6Props) => {
+  return (
+    <h6
       className={`text-black dark:text-white opacity-80 ${props.className} md:text-xl`}
     >
-      <Trans
-        i18nKey={props.i18nKey}
-        components={[<span className="text-primary dark:text-primary-dark" />]}
-      />
-    </p>
+      {props.i18nKey && (
+        <Trans
+          i18nKey={props.i18nKey}
+          components={[
+            <span className="text-primary dark:text-primary-dark" />,
+          ]}
+        />
+      )}
+      {props.children && props.children}
+    </h6>
   );
 };
