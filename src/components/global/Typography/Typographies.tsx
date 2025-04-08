@@ -105,3 +105,25 @@ export const H6 = (props: H6Props) => {
     </h6>
   );
 };
+
+type ParagraphProps = {
+  i18nKey?: string;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+export const Paragraph = (props: ParagraphProps) => {
+  return (
+    <h6 className={`text-black dark:text-white opacity-80 ${props.className}`}>
+      {props.i18nKey && (
+        <Trans
+          i18nKey={props.i18nKey}
+          components={[
+            <span className="text-primary dark:text-primary-dark" />,
+          ]}
+        />
+      )}
+      {props.children && props.children}
+    </h6>
+  );
+};

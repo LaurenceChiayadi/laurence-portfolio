@@ -16,6 +16,27 @@
         "title": "🛠️ Skills",
         "workExperience": "🚀  2+ years of experience in software development.",
         "proficiency": "⚡ Proficient in ReactJS, NextJS & Django for dynamic applications."
-        
+    },
+    "projects": {
+        "title": "💻 Projects",
+        "projects": [
+            {
+                "title": "Capsule Transit Landing Page",
+                "description": "CapsuleTransit is a modern, mobile-friendly website built for a capsule hotel located in Kuala Lumpur International Airport. It’s designed to help travelers quickly find essential information, including room types, amenities, terminal locations, and booking options. With a clean layout, custom illustrations, and responsive design, the site delivers a seamless and visually engaging experience for users on the go.",
+                "URL": "https://capsuletransit.com/",
+                "stacks": ["NextJS", "TypeScript", "Material UI"]
+            },
+            {
+                "title": "Capsule Transit HMS",
+                "description": "The Capsule Transit HMS (Hotel Management System) is a custom-built solution designed to streamline front desk operations. It supports both reservation-based and walk-in bookings, with seamless integration to STAAH for managing OTA reservations. The system also features tailored financial reporting, efficient room management, and tools that help staff handle daily operations with greater accuracy and speed.",
+                "stacks": ["NextJS", "TypeScript", "Material UI"]
+            },
+            {
+                "title": "PT. Batam Narita Indah",
+                "description": "PT. Batam Narita Indah is a full-service logistics company based in Batam, Indonesia, specializing in industrial machinery moving and packaging. I designed and developed their official website to showcase their expertise in handling complex relocations, heavy equipment rentals, container services, and custom packaging solutions. The site emphasizes trust, safety, and efficiency, while also streamlining customer inquiries through clean UI and contact flows.",
+                "URL": "https://www.batamnarita.com/",
+                "stacks": ["ReactJS", "TypeScript", "Django", "Python"]
+            }
+        ]
     }
 }
