@@ -1,5 +1,5 @@
 {
-    "navBar": [{"label": "Home", "position": 0}, {"label": "About", "position": 80}, {"label": "Skills", "position": 160}, {"label": "Projects", "position": 240}, {"label": "Contact", "position": 320}],
+    "navBar": [{"label": "Home", "position": 0}, {"label": "About", "position": 60}, {"label": "Skills", "position": 115}, {"label": "Projects", "position": 180}, {"label": "Contact", "position": 250}],
     "hero": {
         "subtitle": "Hey There!, I am",
         "title": "Laurence Chiayadi,",
