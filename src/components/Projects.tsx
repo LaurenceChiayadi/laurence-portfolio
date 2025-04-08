@@ -45,7 +45,7 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Visit Site ↗
+                        {t("projects.visit")}
                       </a>
                     )}
                   </div>

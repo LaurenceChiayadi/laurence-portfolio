@@ -18,6 +18,7 @@
     },
     "projects": {
         "title": "💻 Projects",
+        "visit": "Visit ↗",
         "projects": [
             {
                 "title": "Capsule Transit Landing Page",
