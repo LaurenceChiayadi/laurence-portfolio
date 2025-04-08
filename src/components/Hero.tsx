@@ -5,6 +5,7 @@ import HandWavingGif from "../assets/icons/hand-waving-hand.gif";
 import Wrapper from "./global/Wrapper";
 import { getLogo } from "../utilities/GetUtilities";
 import GradientButton from "./global/GradientButton";
+import { H1, H3 } from "./global/Typography/Typographies";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -27,18 +28,14 @@ const Hero = () => {
             className="flex flex-col items-center gap-4"
           >
             <img className="w-[3.5em] h-[3.5em]" src={HandWavingGif} />
-            <h3 className="text-black dark:text-white opacity-80 font-semibold text-3xl md:text-4.5xl">
-              {t("hero.subtitle")}
-            </h3>
+            <H3>{t("hero.subtitle")}</H3>
           </motion.div>
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-primary dark:text-primary-dark font-semibold text-center text-4xl md:text-6xl">
-              {t("hero.title")}
-            </h1>
+            <H1>{t("hero.title")}</H1>
           </motion.div>
         </div>
         <div className="flex flex-col md:w-1/2 items-center justify-center gap-4 md:mt-8">
@@ -47,9 +44,7 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h3 className="text-black dark:text-white opacity-80 font-semibold text-3xl md:text-4.5xl text-center">
-              {t("hero.description")}
-            </h3>
+            <H3 className="text-center">{t("hero.description")}</H3>
           </motion.div>
           <motion.div
             initial={{ y: 50, opacity: 0 }}

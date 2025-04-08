@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import SelfPhoto from "../assets/self-photo.jpg";
 import Blob from "./global/Animation/Blob";
 import Wrapper from "./global/Wrapper";
-import Description from "./global/Typography/Description";
+import { Description, H3 } from "./global/Typography/Typographies";
 import AnimateOnSeen from "./global/Animation/AnimateOnSeen";
 
 const About = () => {
@@ -23,9 +23,7 @@ const About = () => {
         </AnimateOnSeen>
         <div className="flex flex-col items-start gap-4  md:w-42/100">
           <AnimateOnSeen>
-            <h2 className="text-4xl font-semibold dark:text-white">
-              {t("about.title")}
-            </h2>
+            <H3>{t("about.title")}</H3>
           </AnimateOnSeen>
           <AnimateOnSeen>
             <Description i18nKey="about.intro" />
