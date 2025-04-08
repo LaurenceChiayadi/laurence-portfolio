@@ -8,11 +8,11 @@ import {
 } from "../../utilities/ThemeUtilities";
 import { useTheme } from "../../contexts/ThemeContext";
 import useScrollLocation from "../../hooks/useScrollLocation";
+import navBarValues from "../../constants/NavBarValues";
 
 type DrawerProps = {
   isOpenDrawer: boolean;
   menuOpen: VoidFunction;
-  menuOptions: INavBarContent[];
 };
 
 const Drawer = (props: DrawerProps) => {
@@ -60,7 +60,7 @@ const Drawer = (props: DrawerProps) => {
       >
         <div className="flex flex-col items-start justify-start p-12 gap-10">
           <ul className="flex flex-col gap-8">
-            {props.menuOptions.map((item: INavBarContent) => (
+            {navBarValues.map((item: INavBarContent) => (
               <a
                 key={item.label}
                 onClick={() => scrollToPercentage(item.position)}
