@@ -36,7 +36,27 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <H1>{t("hero.title")}</H1>
+            <H1>
+              {t("hero.title")
+                .split("")
+                .map((char, index) => (
+                  <motion.span
+                    key={index}
+                    initial={{ y: 0 }}
+                    animate={{ y: [0, -8, 0, 8, 0] }}
+                    transition={{
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      duration: 2,
+                      delay: index * 0.1,
+                      ease: "easeInOut",
+                    }}
+                    style={{ display: "inline-block" }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+            </H1>
           </motion.div>
         </div>
         <div className="flex flex-col md:w-1/2 items-center justify-center gap-4 md:mt-8">
