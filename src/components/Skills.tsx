@@ -30,8 +30,6 @@ const Skills = () => {
 
     const elements = containerRef.current.querySelectorAll(".scatter");
 
-    console.log(elements);
-
     const handlePointerMove = (event: PointerEvent) => {
       const now = performance.now();
       const timeSinceLastEvent = (now - prevEvent.current) / 1000; // seconds
@@ -65,6 +63,67 @@ const Skills = () => {
       document.removeEventListener("pointermove", handlePointerMove);
     };
   }, []);
+
+  // useEffect(() => {
+  //   if (!containerRef.current) return;
+
+  //   const containerRect = containerRef.current.getBoundingClientRect();
+  //   const elements =
+  //     containerRef.current.querySelectorAll<HTMLElement>(".scatter");
+
+  //   const handlePointerMove = (event: PointerEvent) => {
+  //     const now = performance.now();
+  //     const timeSinceLastEvent = (now - prevEvent.current) / 1000;
+  //     prevEvent.current = now;
+  //     velocityX.set(event.movementX / timeSinceLastEvent);
+  //     velocityY.set(event.movementY / timeSinceLastEvent);
+  //   };
+
+  //   document.addEventListener("pointermove", handlePointerMove);
+
+  //   elements.forEach((element) => {
+  //     element.addEventListener("pointerenter", () => {
+  //       const speed = Math.sqrt(velocityX.get() ** 2 + velocityY.get() ** 2);
+  //       const angle = Math.atan2(velocityY.get(), velocityX.get());
+  //       const distance = speed * 0.1;
+
+  //       const proposedX = Math.cos(angle) * distance;
+  //       const proposedY = Math.sin(angle) * distance;
+
+  //       const elRect = element.getBoundingClientRect();
+
+  //       const newX = elRect.left + proposedX;
+  //       const newY = elRect.top + proposedY;
+
+  //       // Bounce logic: if new position is outside container bounds
+  //       const bounceX =
+  //         newX < containerRect.left || newX + elRect.width > containerRect.right
+  //           ? -proposedX
+  //           : proposedX;
+
+  //       const bounceY =
+  //         newY < containerRect.top ||
+  //         newY + elRect.height > containerRect.bottom
+  //           ? -proposedY
+  //           : proposedY;
+
+  //       animate(
+  //         element,
+  //         { x: bounceX, y: bounceY },
+  //         { type: "spring", stiffness: 120, damping: 20 }
+  //       );
+  //     });
+
+  //     // Optional: return to original position
+  //     element.addEventListener("pointerleave", () => {
+  //       animate(element, { x: 0, y: 0 }, { type: "spring", stiffness: 120 });
+  //     });
+  //   });
+
+  //   return () => {
+  //     document.removeEventListener("pointermove", handlePointerMove);
+  //   };
+  // }, []);
 
   return (
     <Wrapper className="w-full">
