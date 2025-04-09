@@ -18,6 +18,8 @@ const Hero = () => {
     }
   ) as string[];
 
+  const titleChars = t("hero.title").split("");
+
   return (
     <Wrapper className="min-h-screen w-full">
       <div className="flex flex-col md:flex-row items-center justify-evenly gap-14">
@@ -37,25 +39,23 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <H1>
-              {t("hero.title")
-                .split("")
-                .map((char, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ y: 0 }}
-                    animate={{ y: [0, -8, 0, 8, 0] }}
-                    transition={{
-                      repeat: Infinity,
-                      repeatType: "loop",
-                      duration: 2,
-                      delay: index * 0.1,
-                      ease: "easeInOut",
-                    }}
-                    style={{ display: "inline-block" }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </motion.span>
-                ))}
+              {titleChars.map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ y: 0 }}
+                  animate={{ y: [-10, 10] }}
+                  transition={{
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    duration: 2,
+                    ease: "easeInOut",
+                    delay: index * 0.15 - 0.15 * titleChars.length,
+                  }}
+                  style={{ display: "inline-block" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
             </H1>
           </motion.div>
         </div>
