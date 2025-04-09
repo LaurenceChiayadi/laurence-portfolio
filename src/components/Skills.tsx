@@ -5,6 +5,8 @@ import { H2, H5 } from "./global/Typography/Typographies";
 import { SkillsData } from "../constants/SkillsData";
 import { ThemeEnum, useTheme } from "../contexts/ThemeContext";
 import AnimateOnSeen from "./global/Animation/AnimateOnSeen";
+import { useEffect, useRef } from "react";
+import { animate, hover, useMotionValue } from "framer-motion";
 
 const Skills = () => {
   const { t } = useTranslation();
@@ -17,6 +19,53 @@ const Skills = () => {
       return color;
     }
   };
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const velocityX = useMotionValue(0);
+  const velocityY = useMotionValue(0);
+  const prevEvent = useRef(0);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const elements = containerRef.current.querySelectorAll(".scatter");
+
+    console.log(elements);
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const now = performance.now();
+      const timeSinceLastEvent = (now - prevEvent.current) / 1000; // seconds
+      prevEvent.current = now;
+      velocityX.set(event.movementX / timeSinceLastEvent);
+      velocityY.set(event.movementY / timeSinceLastEvent);
+    };
+
+    document.addEventListener("pointermove", handlePointerMove);
+
+    hover(elements, (element) => {
+      // Calculate the speed of the pointer movement
+      // and use that to calculate the distance the character should move
+      const speed = Math.sqrt(
+        velocityX.get() * velocityX.get() + velocityY.get() * velocityY.get()
+      );
+      const angle = Math.atan2(velocityY.get(), velocityX.get());
+      const distance = speed * 0.1;
+
+      animate(
+        element,
+        {
+          x: Math.cos(angle) * distance,
+          y: Math.sin(angle) * distance,
+        },
+        { type: "spring", stiffness: 100, damping: 50 }
+      );
+    });
+
+    return () => {
+      document.removeEventListener("pointermove", handlePointerMove);
+    };
+  }, []);
+
   return (
     <Wrapper className="w-full">
       <div className="flex flex-col md:flex-row items-center justify-evenly gap-8">
@@ -33,7 +82,7 @@ const Skills = () => {
             </AnimateOnSeen>
           </div>
         </div>
-        <div className="flex flex-col gap-4">
+        <div ref={containerRef} className="flex flex-col gap-4">
           {SkillsData.map((skills, index) => (
             <AnimateOnSeen key={index}>
               <div className="flex flex-col md:flex-row items-center gap-4">
@@ -44,7 +93,7 @@ const Skills = () => {
                   {skills.items.map((item, index1) => (
                     <div
                       key={index1}
-                      className={`flex flex-row items-center gap-2 border-2 rounded-2xl px-3 py-0.5 font-semibold`}
+                      className={`scatter flex flex-row items-center gap-2 border-2 rounded-2xl px-3 py-0.5 font-semibold will-change-transform`}
                       style={{
                         borderColor: checkColor(item.color),
                         color: checkColor(item.color),
