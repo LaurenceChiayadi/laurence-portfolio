@@ -2,9 +2,38 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import CameraImages from "../constants/CameraImages";
+import { useEffect, useState } from "react";
+import { getImageOrientation } from "../utilities/Functions";
 
 const Gallery = () => {
   const navigate = useNavigate();
+  const [sortedImages, setSortedImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    const sortImagesByOrientation = async () => {
+      const portrait: string[] = [];
+      const landscape: string[] = [];
+
+      for (const url of CameraImages) {
+        const orientation = await getImageOrientation(url);
+        if (orientation === "P") portrait.push(url);
+        else landscape.push(url);
+      }
+
+      // Interleave for masonry balance
+      const mixed: string[] = [];
+      const max = Math.max(portrait.length, landscape.length);
+      for (let i = 0; i < max; i++) {
+        if (landscape[i]) mixed.push(landscape[i]);
+        if (portrait[i]) mixed.push(portrait[i]);
+      }
+
+      setSortedImages(mixed);
+    };
+
+    sortImagesByOrientation();
+  }, []);
+
   return (
     <div className="py-24 px-4 sm:px-8">
       <div className="flex flex-row justify-between items-center">
@@ -24,7 +53,7 @@ const Gallery = () => {
       </div>
       <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl shadow-xl p-4">
         <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-5">
-          {CameraImages.map((image, index) => (
+          {sortedImages.map((image, index) => (
             <motion.img
               src={image}
               initial={{ opacity: 0, y: 30 }}
