@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { Link } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 import { useTheme, ThemeEnum } from "../../contexts/ThemeContext";
 import NavigationButton from "../global/Navigation/NavigationButton";
@@ -11,6 +11,7 @@ import navBarValues from "../../constants/NavBarValues";
 
 const NavBar = () => {
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
   const { percentageScrolled, scrollToPercentage } = useScrollLocation();
 
   const [selected, setSelected] = useState(navBarValues[0].label);
@@ -46,8 +47,12 @@ const NavBar = () => {
             {item.label}
           </NavigationButton>
         ))}
-        <NavigationButton>
-          <Link to="/gallery">Gallery</Link>
+        <NavigationButton
+          onClick={() =>
+            navigate("https://laurence-chiayadi.vercel.app/gallery")
+          }
+        >
+          Gallery
         </NavigationButton>
       </ul>
 
