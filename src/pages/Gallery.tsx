@@ -35,8 +35,8 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div className="py-24 px-4 sm:px-8">
-      <div className="flex flex-row justify-between items-center">
+    <div className="py-8 md:py-24 px-4 sm:px-8">
+      <div className="flex flex-col-reverse md:flex-row justify-between md:items-center">
         <div className="text-black dark:text-white mb-6 ">
           <h1 className="text-3xl font-semibold mb-2">My Camera Gallery 📸</h1>
           <p className="text-sm sm:text-base text-black/80 dark:text-white/80">

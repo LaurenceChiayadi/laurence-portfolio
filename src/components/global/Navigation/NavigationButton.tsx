@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 type NavigationButtonProps = {
-  selected: boolean;
+  selected?: boolean;
   children: React.ReactNode;
   onClick: VoidFunction;
 };
