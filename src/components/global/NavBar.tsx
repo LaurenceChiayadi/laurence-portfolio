@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { redirect } from "react-router";
+import { Link } from "react-router";
 
 import { useTheme, ThemeEnum } from "../../contexts/ThemeContext";
 import NavigationButton from "../global/Navigation/NavigationButton";
@@ -46,8 +46,8 @@ const NavBar = () => {
             {item.label}
           </NavigationButton>
         ))}
-        <NavigationButton onClick={() => redirect("/gallery")}>
-          Gallery
+        <NavigationButton>
+          <Link to="/gallery">Gallery</Link>
         </NavigationButton>
       </ul>
 
