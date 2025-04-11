@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
 import { BiMenu, BiX } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
 
 import {
   getBackgroundClass,
@@ -16,9 +15,11 @@ type DrawerProps = {
   menuOpen: VoidFunction;
 };
 
+const currentUrl = window.location.href;
+const newUrl = `${currentUrl}gallery`;
+
 const Drawer = (props: DrawerProps) => {
   const { theme } = useTheme();
-  const navigate = useNavigate();
   const { scrollToPercentage } = useScrollLocation();
 
   return (
@@ -74,9 +75,9 @@ const Drawer = (props: DrawerProps) => {
               </a>
             ))}
             <a
-              onClick={() =>
-                navigate("https://laurence-chiayadi.vercel.app/gallery")
-              }
+              onClick={() => {
+                window.open(newUrl, "_blank");
+              }}
               className={`cursor-pointer font-semibold opacity-70 transition-all duration-300 hover:opacity-100 bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent ${getBodyTextClass(
                 theme
               )}`}
