@@ -8,9 +8,6 @@ import Drawer from "../global/Drawer";
 import useScrollLocation from "../../hooks/useScrollLocation";
 import navBarValues from "../../constants/NavBarValues";
 
-const currentUrl = window.location.href;
-const newUrl = `${currentUrl}gallery`;
-
 const NavBar = () => {
   const { theme, toggleTheme } = useTheme();
   const { percentageScrolled, scrollToPercentage } = useScrollLocation();
@@ -50,7 +47,7 @@ const NavBar = () => {
         ))}
         <NavigationButton
           onClick={() => {
-            window.open(newUrl, "_blank");
+            window.location.href = "/gallery";
           }}
         >
           Gallery

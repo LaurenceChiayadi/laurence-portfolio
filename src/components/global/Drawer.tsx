@@ -15,9 +15,6 @@ type DrawerProps = {
   menuOpen: VoidFunction;
 };
 
-const currentUrl = window.location.href;
-const newUrl = `${currentUrl}gallery`;
-
 const Drawer = (props: DrawerProps) => {
   const { theme } = useTheme();
   const { scrollToPercentage } = useScrollLocation();
@@ -76,7 +73,7 @@ const Drawer = (props: DrawerProps) => {
             ))}
             <a
               onClick={() => {
-                window.open(newUrl, "_blank");
+                window.location.href = "/gallery";
               }}
               className={`cursor-pointer font-semibold opacity-70 transition-all duration-300 hover:opacity-100 bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent ${getBodyTextClass(
                 theme
