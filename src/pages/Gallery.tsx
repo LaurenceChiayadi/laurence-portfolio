@@ -8,6 +8,7 @@ import { getImageOrientation } from "../utilities/Functions";
 const Gallery = () => {
   const navigate = useNavigate();
   const [sortedImages, setSortedImages] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const sortImagesByOrientation = async () => {
@@ -29,6 +30,7 @@ const Gallery = () => {
       }
 
       setSortedImages(mixed);
+      setIsLoading(false);
     };
 
     sortImagesByOrientation();
@@ -52,19 +54,29 @@ const Gallery = () => {
         </button>
       </div>
       <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl shadow-xl p-4">
-        <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-5">
-          {sortedImages.map((image, index) => (
-            <motion.img
-              src={image}
-              loading="lazy"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.2, delay: index * 0.1 }}
-              className="w-full transition-transform duration-300 hover:scale-105 hover:brightness-110 rounded-lg shadow-md"
-            />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="flex justify-center py-12">
+            <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+          </div>
+        ) : (
+          <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-5">
+            {sortedImages.map((image, index) => (
+              <motion.img
+                key={index}
+                src={image}
+                loading="lazy"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.2,
+                  delay: Math.min(index * 0.05, 0.5),
+                }}
+                className="w-full transition-transform duration-300 hover:scale-105 hover:brightness-110 rounded-lg shadow-md"
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
