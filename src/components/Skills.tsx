@@ -28,11 +28,13 @@ const Skills = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const elements = containerRef.current.querySelectorAll(".scatter");
+    const elements =
+      containerRef.current.querySelectorAll<HTMLElement>(".scatter");
+    const originalTransforms = new Map<HTMLElement, { x: number; y: number }>();
 
     const handlePointerMove = (event: PointerEvent) => {
       const now = performance.now();
-      const timeSinceLastEvent = (now - prevEvent.current) / 1000; // seconds
+      const timeSinceLastEvent = (now - prevEvent.current) / 1000;
       prevEvent.current = now;
       velocityX.set(event.movementX / timeSinceLastEvent);
       velocityY.set(event.movementY / timeSinceLastEvent);
@@ -40,9 +42,13 @@ const Skills = () => {
 
     document.addEventListener("pointermove", handlePointerMove);
 
+    // Save original position
+    elements.forEach((el) => {
+      originalTransforms.set(el, { x: 0, y: 0 });
+    });
+
+    // Handle hover/move interaction
     hover(elements, (element) => {
-      // Calculate the speed of the pointer movement
-      // and use that to calculate the distance the character should move
       const speed = Math.sqrt(
         velocityX.get() * velocityX.get() + velocityY.get() * velocityY.get()
       );
@@ -59,8 +65,26 @@ const Skills = () => {
       );
     });
 
+    // IntersectionObserver to return to original position when out of view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target as HTMLElement;
+          if (!entry.isIntersecting) {
+            animate(el, { x: 0, y: 0 }, { type: "spring", stiffness: 50 });
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger when 10% is visible
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
     return () => {
       document.removeEventListener("pointermove", handlePointerMove);
+      elements.forEach((el) => observer.unobserve(el));
     };
   }, []);
 
