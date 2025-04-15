@@ -1,40 +1,19 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import CameraImages from "../constants/CameraImages";
-import { useEffect, useState } from "react";
-import { getImageOrientation } from "../utilities/Functions";
+import { Blurhash } from "react-blurhash";
 
+import CameraImages from "../constants/CameraImages";
 const Gallery = () => {
   const navigate = useNavigate();
-  const [sortedImages, setSortedImages] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [loadedImages, setLoadedImages] = useState<{ [key: number]: boolean }>(
+    {}
+  );
 
-  useEffect(() => {
-    const sortImagesByOrientation = async () => {
-      const portrait: string[] = [];
-      const landscape: string[] = [];
-
-      for (const url of CameraImages) {
-        const orientation = await getImageOrientation(url);
-        if (orientation === "P") portrait.push(url);
-        else landscape.push(url);
-      }
-
-      // Interleave for masonry balance
-      const mixed: string[] = [];
-      const max = Math.max(portrait.length, landscape.length);
-      for (let i = 0; i < max; i++) {
-        if (landscape[i]) mixed.push(landscape[i]);
-        if (portrait[i]) mixed.push(portrait[i]);
-      }
-
-      setSortedImages(mixed);
-      setIsLoading(false);
-    };
-
-    sortImagesByOrientation();
-  }, []);
+  const handleLoad = (index: number) => {
+    setLoadedImages((prev) => ({ ...prev, [index]: true }));
+  };
 
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
@@ -45,7 +24,6 @@ const Gallery = () => {
   };
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Check if the click target is the background overlay (not the image)
     if (e.target === e.currentTarget) {
       handleCloseModal();
     }
@@ -70,30 +48,45 @@ const Gallery = () => {
       </div>
 
       <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl shadow-xl p-4">
-        {isLoading ? (
-          <div className="flex justify-center py-12">
-            <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
-          </div>
-        ) : (
-          <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-5">
-            {sortedImages.map((image, index) => (
-              <motion.img
-                key={index}
-                src={image}
-                loading="lazy"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.2,
-                  delay: Math.min(index * 0.05, 0.5),
-                }}
-                className="w-full transition-transform duration-300 hover:scale-105 hover:brightness-110 rounded-lg shadow-md cursor-pointer"
-                onClick={() => handleImageClick(image)}
+        <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4 [&>div:not(:first-child)]:mt-5">
+          {CameraImages.map((image, index: number) => (
+            <motion.div
+              key={index}
+              className={`relative w-full overflow-hidden rounded-lg shadow-md cursor-pointer image ${
+                image.landscape ? "aspect-[3/2]" : "aspect-[2/3]"
+              }`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.3,
+                delay: Math.random() * 0.4 + 0.1,
+              }}
+              onClick={() => handleImageClick(image.src)}
+            >
+              {!loadedImages[index] && (
+                <Blurhash
+                  hash={image.blurhash}
+                  width={"100%"}
+                  height={"100%"}
+                  resolutionX={32}
+                  resolutionY={32}
+                  punch={1}
+                  className="absolute w-full rounded-lg shadow-md "
+                />
+              )}
+
+              <img
+                src={image.src}
+                alt=""
+                onLoad={() => handleLoad(index)}
+                className={`w-full transition-transform duration-300 hover:scale-105 hover:brightness-110 rounded-lg shadow-md cursor-pointer ${
+                  loadedImages[index] ? "opacity-100" : "opacity-0"
+                }`}
               />
-            ))}
-          </div>
-        )}
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {selectedImage && (
