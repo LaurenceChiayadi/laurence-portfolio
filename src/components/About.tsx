@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-import SelfPhoto from '../assets/self-photo.jpg';
-import Blob from './global/Animation/Blob';
-import Wrapper from './global/Wrapper';
-import { H3, H6 } from './global/Typography/Typographies';
-import AnimateOnSeen from './global/Animation/AnimateOnSeen';
+import SelfPhoto from "../assets/self-photo.jpg";
+import Blob from "./global/Animation/Blob";
+import Wrapper from "./global/Wrapper";
+import { H3, H6 } from "./global/Typography/Typographies";
+import AnimateOnSeen from "./global/Animation/AnimateOnSeen";
 
 const About = () => {
   const { t } = useTranslation();
@@ -18,12 +18,12 @@ const About = () => {
             src={SelfPhoto}
             alt="blob"
             className="h-100 object-cover"
-            style={{ clipPath: 'url(#blobClip)' }}
+            style={{ clipPath: "url(#blobClip)" }}
           />
         </AnimateOnSeen>
         <div className="flex flex-col items-start gap-4  md:w-42/100">
           <AnimateOnSeen>
-            <H3>{t('about.title')}</H3>
+            <H3>{t("about.title")}</H3>
           </AnimateOnSeen>
           <AnimateOnSeen>
             <H6 i18nKey="about.intro" />
@@ -33,6 +33,16 @@ const About = () => {
           </AnimateOnSeen>
           <AnimateOnSeen>
             <H6 i18nKey="about.hobbies" />
+          </AnimateOnSeen>
+          <AnimateOnSeen>
+            <a
+              className="cursor-pointer text-primary dark:text-primary-dark font-semibold"
+              href="/gallery"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t("about.checkOutGallery")}
+            </a>
           </AnimateOnSeen>
         </div>
       </div>
