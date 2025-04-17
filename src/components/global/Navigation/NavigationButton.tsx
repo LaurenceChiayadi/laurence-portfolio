@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 type NavigationButtonProps = {
   selected?: boolean;
@@ -8,15 +8,15 @@ type NavigationButtonProps = {
 
 const NavigationButton = (props: NavigationButtonProps) => {
   return (
-    <a
+    <button
       onClick={props.onClick}
       className="relative cursor-pointer px-3 py-1 rounded-t-lg overflow-hidden"
     >
       {/* Background Animation */}
       <motion.div
-        initial={{ height: "0%" }}
-        animate={{ height: props.selected ? "100%" : "0%" }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        initial={{ height: '0%' }}
+        animate={{ height: props.selected ? '100%' : '0%' }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
         className="absolute bottom-0 left-0 w-full bg-white dark:bg-[#00091d]"
       />
 
@@ -24,12 +24,12 @@ const NavigationButton = (props: NavigationButtonProps) => {
       <li
         className={`relative z-10 opacity-100 transition-all duration-300 hover:opacity-70 ${
           props.selected &&
-          "font-semibold bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent"
+          'font-semibold bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent'
         }`}
       >
         {props.children}
       </li>
-    </a>
+    </button>
   );
 };
 

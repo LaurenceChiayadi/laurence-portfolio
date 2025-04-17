@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Blurhash } from "react-blurhash";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Blurhash } from 'react-blurhash';
 
-import CameraImages from "../constants/CameraImages";
+import CameraImages from '../constants/CameraImages';
+import { useOutletContext } from 'react-router-dom';
+
 const Gallery = () => {
-  const navigate = useNavigate();
+  const { handlePageChange } = useOutletContext<LayoutContext>();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [loadedImages, setLoadedImages] = useState<{ [key: number]: boolean }>(
     {}
@@ -40,7 +41,7 @@ const Gallery = () => {
           </p>
         </div>
         <button
-          onClick={() => navigate("/")}
+          onClick={() => handlePageChange('/')}
           className="mb-4 text-sm text-black dark:text-white bg-black/10 dark:bg-white/10 border border-black/20 dark:border-white/20 hover:bg-black/20 dark:hover:bg-white/20 backdrop-blur-md rounded-lg px-4 py-2 transition"
         >
           ← Go Back
@@ -53,7 +54,7 @@ const Gallery = () => {
             <motion.div
               key={index}
               className={`relative w-full overflow-hidden rounded-lg shadow-md cursor-pointer image ${
-                image.landscape ? "aspect-[3/2]" : "aspect-[2/3]"
+                image.landscape ? 'aspect-[3/2]' : 'aspect-[2/3]'
               }`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -67,8 +68,8 @@ const Gallery = () => {
               {!loadedImages[index] && (
                 <Blurhash
                   hash={image.blurhash}
-                  width={"100%"}
-                  height={"100%"}
+                  width={'100%'}
+                  height={'100%'}
                   resolutionX={32}
                   resolutionY={32}
                   punch={1}
@@ -81,7 +82,7 @@ const Gallery = () => {
                 alt=""
                 onLoad={() => handleLoad(index)}
                 className={`w-full transition-transform duration-300 hover:scale-105 hover:brightness-110 rounded-lg shadow-md cursor-pointer ${
-                  loadedImages[index] ? "opacity-100" : "opacity-0"
+                  loadedImages[index] ? 'opacity-100' : 'opacity-0'
                 }`}
               />
             </motion.div>
@@ -96,7 +97,7 @@ const Gallery = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           <div className="relative">
             <button
@@ -112,7 +113,7 @@ const Gallery = () => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
             />
           </div>
         </motion.div>
