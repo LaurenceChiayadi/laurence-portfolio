@@ -9,9 +9,7 @@ const Layout = () => {
   return (
     <>
       <div
-        className={`fixed -z-10 min-h-screen w-full ${getBackgroundClass(
-          theme
-        )}`}
+        className={`fixed -z-10 min-h-full w-full ${getBackgroundClass(theme)}`}
       />
       <main className="flex flex-col items-center md:px-8 lg:px-16">
         <Outlet /> {/* Render child routes here */}

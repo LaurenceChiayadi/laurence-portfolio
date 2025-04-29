@@ -1,15 +1,15 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import { H2, H4, Paragraph } from "./global/Typography/Typographies";
-import { getProjectImage } from "../utilities/GetUtilities";
-import Wrapper from "./global/Wrapper";
-import AnimateOnSeen from "./global/Animation/AnimateOnSeen";
+import { H2, H4, Paragraph } from './global/Typography/Typographies';
+import { getProjectImage } from '../utilities/GetUtilities';
+import Wrapper from './global/Wrapper';
+import AnimateOnSeen from './global/Animation/AnimateOnSeen';
 
 const Projects = () => {
   const { t } = useTranslation();
 
-  const projects = t<"projects.projects", { returnObjects: true }, IProjects[]>(
-    "projects.projects",
+  const projects = t<'projects.projects', { returnObjects: true }, IProjects[]>(
+    'projects.projects',
     {
       returnObjects: true,
     }
@@ -18,14 +18,14 @@ const Projects = () => {
     <Wrapper>
       <div className="flex flex-col items-center min-h-screen gap-8">
         <AnimateOnSeen>
-          <H2>{t("projects.title")}</H2>
+          <H2>{t('projects.title')}</H2>
         </AnimateOnSeen>
         <div className="flex flex-col gap-10">
           {projects.map((project, index) => (
             <div
               key={index}
               className={`flex flex-col ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               } gap-6 md:gap-12`}
             >
               <AnimateOnSeen>
@@ -45,7 +45,7 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {t("projects.visit")}
+                        {t('projects.visit')}
                       </a>
                     )}
                   </div>
