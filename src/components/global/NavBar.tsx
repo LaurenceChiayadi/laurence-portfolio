@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { MdDarkMode, MdLightMode } from 'react-icons/md';
+import { useEffect, useState } from "react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
-import { useTheme, ThemeEnum } from '../../contexts/ThemeContext';
-import NavigationButton from '../global/Navigation/NavigationButton';
-import ThemeButton from '../global/Navigation/ThemeButton';
-import Drawer from '../global/Drawer';
-import useScrollLocation from '../../hooks/useScrollLocation';
-import navBarValues from '../../constants/NavBarValues';
-import { useOutletContext } from 'react-router-dom';
+import { useTheme, ThemeEnum } from "../../contexts/ThemeContext";
+import NavigationButton from "../global/Navigation/NavigationButton";
+import ThemeButton from "../global/Navigation/ThemeButton";
+import Drawer from "../global/Drawer";
+import useScrollLocation from "../../hooks/useScrollLocation";
+import navBarValues from "../../constants/NavBarValues";
+import { useOutletContext } from "react-router-dom";
 
 const NavBar = () => {
   const { handlePageChange } = useOutletContext<LayoutContext>();
@@ -49,7 +49,7 @@ const NavBar = () => {
         ))}
         <NavigationButton
           onClick={() => {
-            handlePageChange('/gallery');
+            handlePageChange("/gall");
           }}
         >
           Gallery

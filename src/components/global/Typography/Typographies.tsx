@@ -151,3 +151,27 @@ export const Subtitle = (props: SubtitleProps) => {
     </p>
   );
 };
+
+type CaptionProps = {
+  i18nKey?: string;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+export const Caption = (props: CaptionProps) => {
+  return (
+    <p
+      className={`text-xs text-primary dark:text-primary-dark italic font-semibold opacity-80 ${props.className}`}
+    >
+      {props.i18nKey && (
+        <Trans
+          i18nKey={props.i18nKey}
+          components={[
+            <span className="text-primary dark:text-primary-dark" />,
+          ]}
+        />
+      )}
+      {props.children && props.children}
+    </p>
+  );
+};
