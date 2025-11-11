@@ -11,3 +11,7 @@ interface IProjects {
   URL?: string;
   stacks: string[];
 }
+
+interface LayoutContext {
+  handlePageChange: (to: string) => void;
+}

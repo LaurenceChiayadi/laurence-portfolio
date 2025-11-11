@@ -1,14 +1,15 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { BsGithub, BsInstagram, BsLinkedin } from "react-icons/bs";
-import { BiMenu, BiX } from "react-icons/bi";
+import { AnimatePresence, motion } from 'framer-motion';
+import { BsGithub, BsInstagram, BsLinkedin } from 'react-icons/bs';
+import { BiMenu, BiX } from 'react-icons/bi';
 
 import {
   getBackgroundClass,
   getBodyTextClass,
-} from "../../utilities/ThemeUtilities";
-import { useTheme } from "../../contexts/ThemeContext";
-import useScrollLocation from "../../hooks/useScrollLocation";
-import navBarValues from "../../constants/NavBarValues";
+} from '../../utilities/ThemeUtilities';
+import { useTheme } from '../../contexts/ThemeContext';
+import useScrollLocation from '../../hooks/useScrollLocation';
+import navBarValues from '../../constants/NavBarValues';
+import { useOutletContext } from 'react-router-dom';
 
 type DrawerProps = {
   isOpenDrawer: boolean;
@@ -17,6 +18,7 @@ type DrawerProps = {
 
 const Drawer = (props: DrawerProps) => {
   const { theme } = useTheme();
+  const { handlePageChange } = useOutletContext<LayoutContext>();
   const { scrollToPercentage } = useScrollLocation();
 
   return (
@@ -51,9 +53,9 @@ const Drawer = (props: DrawerProps) => {
         )}
       </AnimatePresence>
       <motion.div
-        initial={{ width: "0%" }}
-        animate={{ width: props.isOpenDrawer ? "50%" : "0%" }}
-        transition={{ duration: 1, ease: "easeInOut" }}
+        initial={{ width: '0%' }}
+        animate={{ width: props.isOpenDrawer ? '50%' : '0%' }}
+        transition={{ duration: 1, ease: 'easeInOut' }}
         className={`fixed left-0 top-[68px] h-screen overflow-hidden border-gray-800  ${getBackgroundClass(
           theme
         )}`}
@@ -73,7 +75,7 @@ const Drawer = (props: DrawerProps) => {
             ))}
             <a
               onClick={() => {
-                window.location.href = "/gallery";
+                handlePageChange('/gallery');
               }}
               className={`cursor-pointer font-semibold opacity-70 transition-all duration-300 hover:opacity-100 bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent ${getBodyTextClass(
                 theme

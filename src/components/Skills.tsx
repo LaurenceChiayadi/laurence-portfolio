@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import Wrapper from "./global/Wrapper";
-import { H2, H5 } from "./global/Typography/Typographies";
+import { Caption, H2, H5 } from "./global/Typography/Typographies";
 import { SkillsData } from "../constants/SkillsData";
 import { ThemeEnum, useTheme } from "../contexts/ThemeContext";
 import AnimateOnSeen from "./global/Animation/AnimateOnSeen";
@@ -190,6 +190,9 @@ const Skills = () => {
               </div>
             </AnimateOnSeen>
           ))}
+          <div className="flex">
+            <Caption>Note: The Pills are interactable</Caption>
+          </div>
         </div>
         {/* <div className="h-100 border"/> */}
       </div>
